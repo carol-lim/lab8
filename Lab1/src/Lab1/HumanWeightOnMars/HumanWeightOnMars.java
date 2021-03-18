@@ -2,6 +2,7 @@ package Lab1.HumanWeightOnMars;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
+
 public class HumanWeightOnMars {
 	private static DecimalFormat df = new DecimalFormat("0.00");
 	private double weightOnEarth;
@@ -13,18 +14,34 @@ public class HumanWeightOnMars {
 	public double getWeightOnEarth() {
 		return weightOnEarth;
 	}
+	
+	private double weightOnMars;
+
+	public void setWeightOnMars(double wom) {
+		this.weightOnMars = wom;
+	}
+	
+	public double getWeightOnMars() {
+		return weightOnMars;
+	}
 
 	public static double calculate(double weightOnEarth) {
 		return weightOnEarth/9.81*3.711;
 	}
 	
 	public static void main(String args[]) {
+		HumanWeightOnMars human1 = new HumanWeightOnMars();
+		
 		Scanner sr = new Scanner(System.in);
 		System.out.println("Enter your weight on Earth (kg): ");
 		double woe = sr.nextDouble();
-		HumanWeightOnMars human1 = new HumanWeightOnMars();
-		human1.weightOnEarth = woe;
-		System.out.println(human1.weightOnEarth+"kg on Earth = "+df.format(calculate(human1.weightOnEarth))+"kg on Mars");
+		human1.weightOnEarth = woe;		
+		
+		double wom = calculate(human1.weightOnEarth);
+		human1.weightOnMars = wom;
+		
+		System.out.println(human1.weightOnEarth+"kg on Earth = "+df.format(wom)+"kg on Mars");
+		
 	}
 	
 }
