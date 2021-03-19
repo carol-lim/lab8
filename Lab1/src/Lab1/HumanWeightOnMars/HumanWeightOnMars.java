@@ -27,9 +27,9 @@ public class HumanWeightOnMars {
 
 	public static double calculate(double weightOnEarth) {
 		return weightOnEarth/9.81*3.711;
-	}
+	}	
 	
-	public static void main(String args[]) {
+	public static void start() {
 		HumanWeightOnMars human1 = new HumanWeightOnMars();
 		
 		Scanner sr = new Scanner(System.in);
@@ -41,7 +41,16 @@ public class HumanWeightOnMars {
 		human1.weightOnMars = wom;
 		
 		System.out.println(human1.weightOnEarth+"kg on Earth = "+df.format(wom)+"kg on Mars");
+		System.out.println();
 		
+		WeightList wl = new WeightList();
+		wl.addToList(human1);
+		
+	}
+	
+	public static void main(String args[]) {
+		start();
+			
 	}
 	
 }
