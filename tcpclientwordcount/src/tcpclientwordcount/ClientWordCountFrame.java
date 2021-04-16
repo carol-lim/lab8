@@ -26,7 +26,7 @@ public class ClientWordCountFrame extends JFrame implements ActionListener{
 	private JLabel lblServerWordCount;
 	private JLabel lblStatusValue;
 	private JTextArea taClientText;
-	protected JButton btnSubmit;
+	private JButton btnSubmit;
 	
 	// Private attributes for frame size
 	private int width = 700;
@@ -188,39 +188,8 @@ public class ClientWordCountFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnSubmit) {
 			
-			try{
-				// Connect to the server @ localHost, port 4222
-				Socket socket = new Socket(InetAddress.getLocalHost(), 4222);
-				
-				// Update the status of the connection
-				updateConnectionStatus(socket.isConnected());
-				
-				// Read from network
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				
-				// Get the output stream from the socket
-		        OutputStream outputStream = socket.getOutputStream();
-		        
-				// Create data output stream to write data on netw
-				DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-				
-				// Get the input of the client
-				String clientText = taClientText.getText();
-			    dataOutputStream.writeUTF(clientText);
-			    
-				// Output the word count
-			    String wordCount = bufferedReader.readLine();
-				updateWordCount(wordCount);
-				
-				// Close everything
-				dataOutputStream.flush();
-				dataOutputStream.close();
-				bufferedReader.close();
-				socket.close();
-				
-			}catch(Exception error){
-				error.printStackTrace();
-			}
+			ClientWordCountApplication.run(taClientText.getText());
+			
 		}
 	}
 }

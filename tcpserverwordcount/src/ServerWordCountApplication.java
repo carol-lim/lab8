@@ -22,9 +22,6 @@ public class ServerWordCountApplication {
 		
 		// Server needs to be alive forever
 		while (true) {
-			// Update conn status
-			serverFrame.updateServerStatus(false);
-			
 			// Accept client request for connection
 			Socket clientSocket = serverSocket.accept();
 			
