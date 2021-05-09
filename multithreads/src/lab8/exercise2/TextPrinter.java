@@ -39,7 +39,7 @@ public class TextPrinter implements Runnable{
 	/**
 	 * To randomize the array order using arraylist
 	 */
-	public void randomText(String threadName) {
+	public void randomText() {
 		// Create a new list
 		List<String> randomTextList = new ArrayList<>();
 
@@ -55,13 +55,12 @@ public class TextPrinter implements Runnable{
 		String printList = Arrays.toString(randomTextList.toArray()).replace("[", "").replace("]", "").replace(",", " ");
 		
 		// print the random ordered list
-		System.out.println(threadName+": "+printList);
+		System.out.println(printList);
 		
 	}
 
 	@Override
-	public void run() 
-	{
+	public void run() {
 		// Get the current thread
 		Thread currentThread = Thread.currentThread();
 				
@@ -71,7 +70,7 @@ public class TextPrinter implements Runnable{
 		} 
 		
 		else if(currentThread.getName()=="word1" || currentThread.getName()=="word2"){
-			randomText(currentThread.getName());
+			randomText();
 		} 
 		
 		else{
